@@ -3,7 +3,10 @@ import requests
 from rich.console import Console
 from rich.prompt import Prompt, IntPrompt
 
-console = Console()
+console = Console(
+    width=100,
+    log_path=False
+)
 LUTION_API_KEY = ""
 BEEMAIL_API_KEY = ""
 
@@ -30,11 +33,9 @@ class MailPurchaser:
         while self.total_purchased != self.purchase_amount:
             for mail_code in ["OUTLOOK", "HOTMAIL"]:
                 mail = self.purchase_lution_mail(mail_code)
-                if not mail:
-                    continue
                 if mail:
                     console.log(
-                        f"[{self.total_purchased}] Purchased Mail | {mail}."
+                        f"[{self.total_purchased}] Purchased Mail | {mail}"
                     )
                     with open("mails.txt", "a") as f:
                         f.write(mail + "\n")
@@ -56,11 +57,9 @@ class MailPurchaser:
     def beemail_process(self) -> None:
         while self.total_purchased != self.purchase_amount:
             mail = self.purchase_beemail()
-            if not mail:
-                continue
             if mail:
                 console.log(
-                    f"[{self.total_purchased}] Purchased Mail | {mail}."
+                    f"[{self.total_purchased}] Purchased Mail | {mail}"
                 )
                 with open("mails.txt", "a") as f:
                     f.write(mail + "\n")
@@ -72,13 +71,28 @@ class MailPurchaser:
 
 
 if __name__ == "__main__":
+    console.rule("Pixens' Mail Purchaser (github.com/Pixens)")
+    print()
     purchaser_type = Prompt.ask("Service you want to purchase from", choices=["LUTION", "BEEMAIL"], default="LUTION")
     amount = IntPrompt.ask("How many e-mails do you want to purchase in total?")
     print()
     console.log(f"Purchasing {amount} e-mails from {purchaser_type}.")
+    print()
     match purchaser_type:
         case "LUTION":
-            print()
+            if not LUTION_API_KEY:
+                console.log(
+                    "Lution.ee API key not set"
+                )
+                print()
+                quit()
+
             MailPurchaser(amount).lution_process()
         case "BEEMAIL":
+            if not LUTION_API_KEY:
+                console.log(
+                    "BeeMail bot API key not set"
+                )
+                quit()
+
             MailPurchaser(amount).beemail_process()
