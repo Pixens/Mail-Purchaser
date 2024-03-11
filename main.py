@@ -34,7 +34,7 @@ class MailPurchaser:
                     continue
                 if mail:
                     console.log(
-                        f"[{self.total_purchased}] Purchased Mail | {mail}"
+                        f"[{self.total_purchased}] Purchased Mail | {mail}."
                     )
                     with open("mails.txt", "a") as f:
                         f.write(mail + "\n")
@@ -60,7 +60,7 @@ class MailPurchaser:
                 continue
             if mail:
                 console.log(
-                    f"[{self.total_purchased}] Purchased Mail | {mail}"
+                    f"[{self.total_purchased}] Purchased Mail | {mail}."
                 )
                 with open("mails.txt", "a") as f:
                     f.write(mail + "\n")
@@ -75,10 +75,9 @@ if __name__ == "__main__":
     purchaser_type = Prompt.ask("Service you want to purchase from", choices=["LUTION", "BEEMAIL"], default="LUTION")
     amount = IntPrompt.ask("How many e-mails do you want to purchase in total?")
     print()
+    console.log(f"Purchasing {amount} e-mails from {purchaser_type}.")
     match purchaser_type:
-
         case "LUTION":
-            console.log(f"Purchasing {amount} e-mails from {purchaser_type}")
             print()
             MailPurchaser(amount).lution_process()
         case "BEEMAIL":
