@@ -4,10 +4,10 @@
 
 <div id="top"></div>
 <p align="left">
-  <img src="https://img.shields.io/github/stars/Pixens/Alienware-Promo-Generator.svg?style=for-the-badge"/>
-  <img src="https://img.shields.io/github/forks/Pixens/Alienware-Promo-Generator.svg?style=for-the-badge"/>
-  <img src="https://img.shields.io/github/issues/Pixens/Alienware-Promo-Generator.svg?style=for-the-badge"/>
-  <img src="https://img.shields.io/github/contributors/Pixens/Alienware-Promo-Generator.svg?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/stars/Pixens/Mail-Purchaser.svg?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/forks/Pixens/Mail-Purchaser.svg?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/issues/Pixens/Mail-Purchaser.svg?style=for-the-badge"/>
+  <img src="https://img.shields.io/github/contributors/Pixens/Mail-Purchaser.svg?style=for-the-badge"/>
 </p>
 
 ## How To Run?
