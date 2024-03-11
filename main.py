@@ -9,11 +9,11 @@ BEEMAIL_API_KEY = ""
 
 class MailPurchaser:
 
-    def __init__(self, purchase_amount: int):
+    def __init__(self, purchase_amount: int) -> None:
         self.purchase_amount = purchase_amount
         self.total_purchased = 0
 
-    def purchase_lution_mail(self, mail_code):
+    def purchase_lution_mail(self, mail_code: str) -> str:
         headers = {
             "Authorization": f"Bearer {LUTION_API_KEY}"
         }
@@ -26,7 +26,7 @@ class MailPurchaser:
         else:
             return ""
 
-    def lution_process(self):
+    def lution_process(self) -> None:
         while self.total_purchased != self.purchase_amount:
             for mail_code in ["OUTLOOK", "HOTMAIL"]:
                 mail = self.purchase_lution_mail(mail_code)
@@ -44,7 +44,7 @@ class MailPurchaser:
                 f"[END] Finished purchasing e-mails."
             )
 
-    def purchase_beemail(self):
+    def purchase_beemail(self) -> str:
         response = requests.get(f"http://bee-mails.com/getEmail?num=1&key={BEEMAIL_API_KEY}&emailType&format=txt")
         if "code" not in response:
             mail = response.text.strip()
@@ -53,7 +53,7 @@ class MailPurchaser:
         else:
             return ""
 
-    def beemail_process(self):
+    def beemail_process(self) -> None:
         while self.total_purchased != self.purchase_amount:
             mail = self.purchase_beemail()
             if not mail:
@@ -71,14 +71,15 @@ class MailPurchaser:
             )
 
 
-purchaser_type = Prompt.ask("Service you want to purchase from", choices=["LUTION", "BEEMAIL"], default="LUTION")
-amount = IntPrompt.ask("How many e-mails do you want to purchase in total?")
-print()
-match purchaser_type:
+if __name__ == "__main__":
+    purchaser_type = Prompt.ask("Service you want to purchase from", choices=["LUTION", "BEEMAIL"], default="LUTION")
+    amount = IntPrompt.ask("How many e-mails do you want to purchase in total?")
+    print()
+    match purchaser_type:
 
-    case "LUTION":
-        console.log(f"Purchasing {amount} e-mails from {purchaser_type}")
-        print()
-        MailPurchaser(amount).lution_process()
-    case "BEEMAIL":
-        MailPurchaser(amount).beemail_process()
+        case "LUTION":
+            console.log(f"Purchasing {amount} e-mails from {purchaser_type}")
+            print()
+            MailPurchaser(amount).lution_process()
+        case "BEEMAIL":
+            MailPurchaser(amount).beemail_process()
