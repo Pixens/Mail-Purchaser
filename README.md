@@ -1,4 +1,4 @@
-# Mail-Purchaser
+# Mail Purchaser/Sniper
 - Purchases e-mails from Lution.ee or BeeMail bot automatically.
 - Buy Best Discord Tools & Best Residential Proxies at https://boostup.cc
 
