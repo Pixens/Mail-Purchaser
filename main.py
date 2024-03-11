@@ -82,7 +82,7 @@ if __name__ == "__main__":
         case "LUTION":
             if not LUTION_API_KEY:
                 console.log(
-                    "Lution.ee API key not set"
+                    "[red] Lution.ee API key not set"
                 )
                 print()
                 quit()
@@ -91,7 +91,7 @@ if __name__ == "__main__":
         case "BEEMAIL":
             if not LUTION_API_KEY:
                 console.log(
-                    "BeeMail bot API key not set"
+                    "[red] BeeMail bot API key not set"
                 )
                 quit()
 
