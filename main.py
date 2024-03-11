@@ -74,7 +74,7 @@ if __name__ == "__main__":
     console.rule("Pixens' Mail Purchaser (github.com/Pixens)")
     print()
     purchaser_type = Prompt.ask("Service you want to purchase from", choices=["LUTION", "BEEMAIL"], default="LUTION")
-    amount = IntPrompt.ask("How many e-mails do you want to purchase in total?")
+    amount = IntPrompt.ask("Number of e-mails you want to purchase")
     print()
     console.log(f"Purchasing {amount} e-mails from {purchaser_type}.")
     print()
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         case "LUTION":
             if not LUTION_API_KEY:
                 console.log(
-                    "[red] Lution.ee API key not set"
+                    "[red] Lution.ee API key not set."
                 )
                 print()
                 quit()
@@ -91,7 +91,7 @@ if __name__ == "__main__":
         case "BEEMAIL":
             if not LUTION_API_KEY:
                 console.log(
-                    "[red] BeeMail bot API key not set"
+                    "[red] BeeMail bot API key not set."
                 )
                 quit()
 
