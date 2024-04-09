@@ -47,7 +47,7 @@ class MailPurchaser:
 
     def purchase_beemail(self) -> str:
         response = requests.get(f"http://bee-mails.com/getEmail?num=1&key={BEEMAIL_API_KEY}&emailType&format=txt")
-        if "code" not in response:
+        if '"success":false' not in response.text:
             mail = response.text.strip()
             self.total_purchased += 1
             return mail
